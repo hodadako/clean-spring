@@ -30,7 +30,6 @@ repositories {
 val mockitoAgent: Configuration = configurations.create("mockitoAgent")
 
 dependencies {
-//    implementation(libs.)
     implementation(libs.bundles.spring)
 
     compileOnly(libs.lombok)
