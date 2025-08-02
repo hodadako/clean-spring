@@ -15,7 +15,7 @@ spring-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-
 spring-web = { module = "org.springframework.boot:spring-boot-starter-web" }
 spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
 spring-security = { module = "org.springframework.security:spring-security-core" }
-spring-docker-compose = { module = "org.springframework.security:spring-boot-docker-compose" }
+spring-docker-compose = { module = "org.springframework.boot:spring-boot-docker-compose" }
 spring-test = { module = "org.springframework.security:spring-boot-starter-test" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
 kotlin-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5" }

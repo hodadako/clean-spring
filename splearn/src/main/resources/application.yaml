@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: splearn
+  docker:
+    compose:
+      file:
+        - "./splearn/compose.yaml"
