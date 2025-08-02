@@ -1,0 +1,27 @@
+[versions]
+lombok = "1.18.32"
+mockito = "5.18.0"
+junit-pioneer = "2.3.0"
+archunit = "1.4.1"
+
+[libraries]
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+junit-pioneer = { module = "org.junit-pioneer:junit-pioneer", version.ref = "junit-pioneer" }
+archunit = { module = "com.tngtech.archunit:archunit-junit5", version.ref = "archunit" }
+h2 = { module = "com.h2database:h2" }
+mysql = { module = "com.mysql:mysql-connector-j" }
+spring-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+spring-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+spring-security = { module = "org.springframework.security:spring-security-core" }
+spring-docker-compose = { module = "org.springframework.security:spring-boot-docker-compose" }
+spring-test = { module = "org.springframework.security:spring-boot-starter-test" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
+kotlin-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5" }
+junit-platform = { module = "org.junit.platform:junit-platform-launcher" }
+
+[bundles]
+spring = ["spring-data-jpa", "spring-web", "spring-validation", "spring-security", "kotlin-reflect"]
+test = ["spring-test", "junit-pioneer", "mockito-core", "archunit", "kotlin-junit5"]
+database = ["h2", "mysql"]
