@@ -11,4 +11,10 @@ class Member(
 
         status = MemberStatus.ACTIVE
     }
+
+    fun deactivate() {
+        check(status == MemberStatus.ACTIVE) {"ACTIVE 상태가 아닙니다"}
+
+        status = MemberStatus.DEACTIVATED
+    }
 }

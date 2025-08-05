@@ -27,8 +27,23 @@ class MemberTest {
 
         member.activate()
 
-        assertThatThrownBy {
-            member.activate()
-        }.isInstanceOf(IllegalStateException::class.java)
+        assertThatThrownBy { member.activate() }.isInstanceOf(IllegalStateException::class.java)
+    }
+
+    @Test
+    fun deactivate() {
+        val member = Member("hodako", "hodako", "secret")
+        member.activate()
+
+        member.deactivate()
+
+        assertThat(member.status).isEqualTo(MemberStatus.DEACTIVATED)
+    }
+
+    @Test
+    fun deactivateFail() {
+        val member = Member("hodako", "hodako", "secret")
+
+        assertThatThrownBy { member.deactivate() }.isInstanceOf(IllegalStateException::class.java)
     }
 }
