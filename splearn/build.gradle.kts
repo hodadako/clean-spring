@@ -28,8 +28,6 @@ repositories {
     mavenCentral()
 }
 
-val mockitoAgent: Configuration = configurations.create("mockitoAgent")
-
 dependencies {
     implementation(libs.bundles.spring)
 
@@ -43,7 +41,6 @@ dependencies {
     testCompileOnly(libs.lombok)
     testRuntimeOnly(libs.junit.platform)
     testImplementation(libs.bundles.test)
-    mockitoAgent(libs.mockito.core) { isTransitive = false }
 }
 
 kotlin {
@@ -62,7 +59,6 @@ noArg {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-    jvmArgs("-javaagent:${mockitoAgent.asPath}")
 }
 
 spotbugs {
