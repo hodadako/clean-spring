@@ -66,5 +66,5 @@ tasks.withType<Test> {
 }
 
 spotbugs {
-    excludeFilter.set(file("${projectDir}/spotbugs-exclude-filter.xml"))
+    excludeFilter.set(file("$projectDir/spotbugs-exclude-filter.xml"))
 }
