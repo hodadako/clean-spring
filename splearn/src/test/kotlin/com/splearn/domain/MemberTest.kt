@@ -77,4 +77,17 @@ class MemberTest {
 
         assertThat(member.verifyPassword("verysecret", passwordEncoder)).isTrue()
     }
+
+    @Test
+    fun isActive() {
+        assertThat(member.isActive()).isFalse()
+
+        member.activate()
+
+        assertThat(member.isActive()).isTrue()
+
+        member.deactivate()
+
+        assertThat(member.isActive()).isFalse()
+    }
 }
