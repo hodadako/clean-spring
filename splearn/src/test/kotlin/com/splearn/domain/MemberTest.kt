@@ -17,9 +17,8 @@ class MemberTest {
             }
 
             override fun matches(password: String, passwordHash: String): Boolean {
-                return encode(password) == passwordHash;
+                return encode(password) == passwordHash
             }
-
         }
         member = Member.create("toby@splearn.app", "Toby", "secret", passwordEncoder)
     }
