@@ -22,7 +22,7 @@ class MemberTest {
         }
         member = Member.create(
             memberCreateRequest = MemberCreateRequest(
-                name = "hodako2401@gmail",
+                email = "hodako2401@gmail.com",
                 nickname = "hodako",
                 password = "secret"
             ),
@@ -96,5 +96,28 @@ class MemberTest {
         member.deactivate()
 
         assertThat(member.isActive()).isFalse()
+    }
+
+    @Test
+    fun invalidEmail() {
+        assertThatThrownBy {
+            Member.create(
+                MemberCreateRequest(
+                    email = "invalid email",
+                    nickname = "hodako",
+                    password = "secret"
+                ),
+                passwordEncoder = passwordEncoder
+            )
+        }.isInstanceOf(IllegalArgumentException::class.java)
+
+        Member.create(
+            MemberCreateRequest(
+                email = "hodako2401@gmail.com",
+                nickname = "hodako",
+                password = "secret"
+            ),
+            passwordEncoder = passwordEncoder
+        )
     }
 }

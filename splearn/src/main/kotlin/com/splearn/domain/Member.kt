@@ -1,7 +1,7 @@
 package com.splearn.domain
 
 class Member private constructor(
-    var name: String,
+    var email: Email,
     var nickname: String,
     var passwordHash: String,
     var status: MemberStatus = MemberStatus.PENDING
@@ -9,7 +9,7 @@ class Member private constructor(
     companion object {
         fun create(memberCreateRequest: MemberCreateRequest, passwordEncoder: PasswordEncoder): Member {
             return Member(
-                name = memberCreateRequest.name,
+                email = Email(memberCreateRequest.email),
                 nickname = memberCreateRequest.nickname,
                 passwordHash = passwordEncoder.encode(memberCreateRequest.password)
             )
