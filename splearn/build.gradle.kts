@@ -2,6 +2,7 @@ plugins {
     java
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "1.9.25"
+    kotlin("plugin.jpa") version "1.9.25"
     id("org.springframework.boot") version "3.5.4"
     id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
     id("io.spring.dependency-management") version "1.1.7"
@@ -42,13 +43,21 @@ dependencies {
     testCompileOnly(libs.lombok)
     testRuntimeOnly(libs.junit.platform)
     testImplementation(libs.bundles.test)
-    mockitoAgent(libs.mockito.core) {isTransitive = false }
+    mockitoAgent(libs.mockito.core) { isTransitive = false }
 }
 
 kotlin {
     compilerOptions {
         freeCompilerArgs.addAll("-Xjsr305=strict")
     }
+}
+
+allOpen {
+    annotation("javax.persistence.Entity")
+}
+
+noArg {
+    annotation("javax.persistence.Entity")
 }
 
 tasks.withType<Test> {
