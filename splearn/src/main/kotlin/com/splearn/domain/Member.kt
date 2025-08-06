@@ -27,4 +27,12 @@ class Member private constructor(
     fun verifyPassword(secret: String, passwordEncoder: PasswordEncoder): Boolean {
         return passwordEncoder.matches(secret, passwordHash)
     }
+
+    fun changeNickname(nickname: String) {
+        this.nickname = nickname
+    }
+
+    fun changePassword(password: String, passwordEncoder: PasswordEncoder) {
+        passwordHash = passwordEncoder.encode(password)
+    }
 }

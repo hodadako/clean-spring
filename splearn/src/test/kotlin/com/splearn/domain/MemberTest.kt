@@ -62,4 +62,20 @@ class MemberTest {
         assertThat(member.verifyPassword(member.passwordHash, passwordEncoder)).isTrue()
         assertThat(member.verifyPassword("hello", passwordEncoder)).isFalse()
     }
+
+    @Test
+    fun changeNickName() {
+        assertThat(member.nickname).isEqualTo("Toby")
+
+        member.changeNickname("Test")
+
+        assertThat(member.nickname).isEqualTo("Test")
+    }
+
+    @Test
+    fun changePassword() {
+        member.changePassword("verysecret", passwordEncoder)
+
+        assertThat(member.verifyPassword("verysecret", passwordEncoder)).isTrue()
+    }
 }
