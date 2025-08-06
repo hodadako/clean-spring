@@ -1,11 +1,17 @@
 package com.splearn.domain
 
-class Member(
+class Member private constructor(
     var name: String,
     var nickname: String,
     var passwordHash: String,
     var status: MemberStatus = MemberStatus.PENDING
 ) {
+    companion object {
+        fun create(name: String, nickname: String, passwordHash: String): Member {
+            return Member(name, nickname, passwordHash)
+        }
+    }
+
     fun activate() {
         check(status == MemberStatus.PENDING) {"PENDING 상태가 아닙니다"}
 
