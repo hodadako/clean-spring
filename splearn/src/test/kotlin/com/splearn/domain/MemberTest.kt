@@ -1,21 +1,29 @@
 package com.splearn.domain
 
+import io.mockk.every
+import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class MemberTest {
+    private lateinit var member: Member
+
+    @BeforeEach
+    fun setUp() {
+        val passwordEncoder = mockk<PasswordEncoder>()
+        every { passwordEncoder.encode(any()) } returns "hashedPassword"
+        member = Member.create("toby@splearn.app", "Toby", "secret", passwordEncoder)
+    }
+
     @Test
     fun createMember() {
-        val member = Member("toby@splearn.app", "Toby", "secret")
-
         assertThat(member.status).isEqualTo(MemberStatus.PENDING)
     }
 
     @Test
     fun activate() {
-        val member = Member("hodako", "hodako", "secret")
-
         member.activate()
 
         assertThat(member.status).isEqualTo(MemberStatus.ACTIVE)
@@ -23,8 +31,6 @@ class MemberTest {
 
     @Test
     fun activateFail() {
-        val member = Member("hodako", "hodako", "secret")
-
         member.activate()
 
         assertThatThrownBy { member.activate() }.isInstanceOf(IllegalStateException::class.java)
@@ -32,7 +38,6 @@ class MemberTest {
 
     @Test
     fun deactivate() {
-        val member = Member("hodako", "hodako", "secret")
         member.activate()
 
         member.deactivate()
@@ -42,8 +47,6 @@ class MemberTest {
 
     @Test
     fun deactivateFail() {
-        val member = Member("hodako", "hodako", "secret")
-
         assertThatThrownBy { member.deactivate() }.isInstanceOf(IllegalStateException::class.java)
     }
 }
