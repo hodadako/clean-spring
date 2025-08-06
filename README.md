@@ -3,5 +3,5 @@
 ## 강의와 다른 점
 - `Java` 대신 `Kotlin`을 사용해요.
 - `gradle dependencies` 관리를 [libs.version.toml](/splearn/gradle/libs.versions.toml)에서 관리해요.
-- `ktlint`를 `pre-commit`으로 `detekt`를 `pre-push`로 적용해요 
+- `ktlint`를 `pre-commit`으로 `detekt`를 `pre-push`로 적용해요.
 - `mockito-core` 대신 `mockk`를 사용해요.
