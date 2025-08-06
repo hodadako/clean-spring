@@ -7,8 +7,12 @@ class Member private constructor(
     var status: MemberStatus = MemberStatus.PENDING
 ) {
     companion object {
-        fun create(name: String, nickname: String, passwordHash: String, passwordEncoder: PasswordEncoder): Member {
-            return Member(name, nickname, passwordEncoder.encode(passwordHash))
+        fun create(memberCreateRequest: MemberCreateRequest, passwordEncoder: PasswordEncoder): Member {
+            return Member(
+                name = memberCreateRequest.name,
+                nickname = memberCreateRequest.nickname,
+                passwordHash = passwordEncoder.encode(memberCreateRequest.password)
+            )
         }
     }
 

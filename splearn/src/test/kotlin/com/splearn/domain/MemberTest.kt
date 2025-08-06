@@ -21,9 +21,7 @@ class MemberTest {
             }
         }
         member = Member.create(
-            name = "toby@splearn.app",
-            nickname = "Toby",
-            passwordHash = "secret",
+            memberCreateRequest = MemberCreateRequest("hodako2401@gmail", "hodako", "secret"),
             passwordEncoder = passwordEncoder
         )
     }
@@ -69,7 +67,7 @@ class MemberTest {
 
     @Test
     fun changeNickName() {
-        assertThat(member.nickname).isEqualTo("Toby")
+        assertThat(member.nickname).isEqualTo("hodako")
 
         member.changeNickname("Test")
 
