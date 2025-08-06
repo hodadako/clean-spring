@@ -20,7 +20,12 @@ class MemberTest {
                 return encode(password) == passwordHash
             }
         }
-        member = Member.create("toby@splearn.app", "Toby", "secret", passwordEncoder)
+        member = Member.create(
+            name = "toby@splearn.app",
+            nickname = "Toby",
+            passwordHash = "secret",
+            passwordEncoder = passwordEncoder
+        )
     }
 
     @Test
