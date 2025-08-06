@@ -1,7 +1,5 @@
 package com.splearn.domain
 
-import io.mockk.every
-import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.BeforeEach
@@ -9,11 +7,20 @@ import org.junit.jupiter.api.Test
 
 class MemberTest {
     private lateinit var member: Member
+    private lateinit var passwordEncoder: PasswordEncoder
 
     @BeforeEach
     fun setUp() {
-        val passwordEncoder = mockk<PasswordEncoder>()
-        every { passwordEncoder.encode(any()) } returns "hashedPassword"
+        passwordEncoder = object : PasswordEncoder {
+            override fun encode(password: String): String {
+                return password.uppercase()
+            }
+
+            override fun matches(password: String, passwordHash: String): Boolean {
+                return encode(password) == passwordHash;
+            }
+
+        }
         member = Member.create("toby@splearn.app", "Toby", "secret", passwordEncoder)
     }
 
@@ -48,5 +55,11 @@ class MemberTest {
     @Test
     fun deactivateFail() {
         assertThatThrownBy { member.deactivate() }.isInstanceOf(IllegalStateException::class.java)
+    }
+
+    @Test
+    fun verifyPassword() {
+        assertThat(member.verifyPassword(member.passwordHash, passwordEncoder)).isTrue()
+        assertThat(member.verifyPassword("hello", passwordEncoder)).isFalse()
     }
 }
