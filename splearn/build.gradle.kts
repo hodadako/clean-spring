@@ -46,7 +46,7 @@ dependencies {
 
 detekt {
     buildUponDefaultConfig = true
-    config = files("$projectDir/config/detekt/detekt.yaml")
+    config.setFrom(files("$projectDir/config/detekt/detekt.yaml"))
 }
 
 kotlin {
