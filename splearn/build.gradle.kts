@@ -5,6 +5,7 @@ plugins {
     kotlin("plugin.jpa") version "1.9.25"
     id("org.springframework.boot") version "3.5.4"
     id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
+    id("io.gitlab.arturbosch.detekt") version "1.23.4"
     id("io.spring.dependency-management") version "1.1.7"
     id("com.github.spotbugs") version "6.1.11"
 }
@@ -41,6 +42,11 @@ dependencies {
     testCompileOnly(libs.lombok)
     testRuntimeOnly(libs.junit.platform)
     testImplementation(libs.bundles.test)
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    config = files("$projectDir/config/detekt/detekt.yaml")
 }
 
 kotlin {
