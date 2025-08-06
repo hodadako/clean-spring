@@ -1,12 +1,12 @@
 [versions]
 lombok = "1.18.32"
-mockito = "5.18.0"
+mockk = "1.14.5"
 junit-pioneer = "2.3.0"
 archunit = "1.4.1"
 
 [libraries]
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
-mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mockk = { module = "io.mock:mock", version.ref = "mockk"}
 junit-pioneer = { module = "org.junit-pioneer:junit-pioneer", version.ref = "junit-pioneer" }
 archunit = { module = "com.tngtech.archunit:archunit-junit5", version.ref = "archunit" }
 h2 = { module = "com.h2database:h2" }
@@ -23,5 +23,5 @@ junit-platform = { module = "org.junit.platform:junit-platform-launcher" }
 
 [bundles]
 spring = ["spring-data-jpa", "spring-web", "spring-validation", "spring-security", "kotlin-reflect"]
-test = ["spring-test", "junit-pioneer", "mockito-core", "archunit", "kotlin-junit5"]
+test = ["spring-test", "junit-pioneer", "mockk", "archunit", "kotlin-junit5"]
 database = ["h2", "mysql"]
