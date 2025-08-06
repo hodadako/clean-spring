@@ -21,7 +21,11 @@ class MemberTest {
             }
         }
         member = Member.create(
-            memberCreateRequest = MemberCreateRequest("hodako2401@gmail", "hodako", "secret"),
+            memberCreateRequest = MemberCreateRequest(
+                name = "hodako2401@gmail",
+                nickname = "hodako",
+                password = "secret"
+            ),
             passwordEncoder = passwordEncoder
         )
     }
