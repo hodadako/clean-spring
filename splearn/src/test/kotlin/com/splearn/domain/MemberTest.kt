@@ -1,7 +1,7 @@
 package com.splearn.domain
 
-import com.splearn.domain.MemberFixture.Companion.createMemberRegisterRequest
-import com.splearn.domain.MemberFixture.Companion.createPasswordEncoder
+import com.splearn.domain.MemberFixture.createMemberRegisterRequest
+import com.splearn.domain.MemberFixture.createPasswordEncoder
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.BeforeEach

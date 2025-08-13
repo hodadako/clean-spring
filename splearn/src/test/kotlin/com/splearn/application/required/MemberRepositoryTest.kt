@@ -1,8 +1,8 @@
 package com.splearn.application.required
 
 import com.splearn.domain.Member
-import com.splearn.domain.MemberFixture.Companion.createMemberRegisterRequest
-import com.splearn.domain.MemberFixture.Companion.createPasswordEncoder
+import com.splearn.domain.MemberFixture.createMemberRegisterRequest
+import com.splearn.domain.MemberFixture.createPasswordEncoder
 import jakarta.persistence.EntityManager
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
