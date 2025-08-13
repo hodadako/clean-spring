@@ -1,5 +1,6 @@
 plugins {
     java
+    jacoco
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "1.9.25"
     kotlin("plugin.jpa") version "1.9.25"
@@ -65,6 +66,17 @@ noArg {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    finalizedBy("jacocoTestReport")
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+        }
+    }
 }
 
 spotbugs {
