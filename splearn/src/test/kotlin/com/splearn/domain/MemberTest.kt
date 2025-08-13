@@ -20,7 +20,7 @@ class MemberTest {
                 return encode(password) == passwordHash
             }
         }
-        member = Member.create(
+        member = Member.refactor(
             memberCreateRequest = MemberCreateRequest(
                 email = "hodako2401@gmail.com",
                 nickname = "hodako",
@@ -101,7 +101,7 @@ class MemberTest {
     @Test
     fun invalidEmail() {
         assertThatThrownBy {
-            Member.create(
+            Member.refactor(
                 MemberCreateRequest(
                     email = "invalid email",
                     nickname = "hodako",
@@ -111,7 +111,7 @@ class MemberTest {
             )
         }.isInstanceOf(IllegalArgumentException::class.java)
 
-        Member.create(
+        Member.refactor(
             MemberCreateRequest(
                 email = "hodako2401@gmail.com",
                 nickname = "hodako",

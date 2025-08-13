@@ -7,7 +7,7 @@ class Member private constructor(
     var status: MemberStatus = MemberStatus.PENDING
 ) {
     companion object {
-        fun create(memberCreateRequest: MemberCreateRequest, passwordEncoder: PasswordEncoder): Member {
+        fun refactor(memberCreateRequest: MemberCreateRequest, passwordEncoder: PasswordEncoder): Member {
             return Member(
                 email = Email(memberCreateRequest.email),
                 nickname = memberCreateRequest.nickname,
