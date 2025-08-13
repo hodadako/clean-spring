@@ -13,11 +13,11 @@ class Member private constructor(
     var status: MemberStatus = MemberStatus.PENDING
 ) {
     companion object {
-        fun register(memberCreateRequest: MemberCreateRequest, passwordEncoder: PasswordEncoder): Member {
+        fun register(memberRegisterRequest: MemberRegisterRequest, passwordEncoder: PasswordEncoder): Member {
             return Member(
-                email = Email(memberCreateRequest.email),
-                nickname = memberCreateRequest.nickname,
-                passwordHash = passwordEncoder.encode(memberCreateRequest.password)
+                email = Email(memberRegisterRequest.email),
+                nickname = memberRegisterRequest.nickname,
+                passwordHash = passwordEncoder.encode(memberRegisterRequest.password)
             )
         }
     }

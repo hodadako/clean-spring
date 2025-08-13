@@ -1,5 +1,7 @@
 package com.splearn.domain
 
+import com.splearn.domain.MemberFixture.Companion.createMemberRegisterRequest
+import com.splearn.domain.MemberFixture.Companion.createPasswordEncoder
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.BeforeEach
@@ -11,21 +13,9 @@ class MemberTest {
 
     @BeforeEach
     fun setUp() {
-        passwordEncoder = object : PasswordEncoder {
-            override fun encode(password: String): String {
-                return password.uppercase()
-            }
-
-            override fun matches(password: String, passwordHash: String): Boolean {
-                return encode(password) == passwordHash
-            }
-        }
+        passwordEncoder = createPasswordEncoder()
         member = Member.register(
-            memberCreateRequest = MemberCreateRequest(
-                email = "hodako2401@gmail.com",
-                nickname = "hodako",
-                password = "secret"
-            ),
+            memberRegisterRequest = createMemberRegisterRequest(),
             passwordEncoder = passwordEncoder
         )
     }
@@ -102,21 +92,13 @@ class MemberTest {
     fun invalidEmail() {
         assertThatThrownBy {
             Member.register(
-                MemberCreateRequest(
-                    email = "invalid email",
-                    nickname = "hodako",
-                    password = "secret"
-                ),
+                memberRegisterRequest = createMemberRegisterRequest("invalid email"),
                 passwordEncoder = passwordEncoder
             )
         }.isInstanceOf(IllegalArgumentException::class.java)
 
         Member.register(
-            MemberCreateRequest(
-                email = "hodako2401@gmail.com",
-                nickname = "hodako",
-                password = "secret"
-            ),
+            memberRegisterRequest = createMemberRegisterRequest(),
             passwordEncoder = passwordEncoder
         )
     }
