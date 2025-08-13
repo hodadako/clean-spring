@@ -6,12 +6,16 @@ import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import org.hibernate.annotations.NaturalId
+import org.hibernate.annotations.NaturalIdCache
 
 @Entity
+@NaturalIdCache
 class Member private constructor(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
+    @NaturalId
     var email: Email,
     var nickname: String,
     var passwordHash: String,
