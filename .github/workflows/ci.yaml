@@ -34,7 +34,6 @@ jobs:
         run: ./gradlew clean build jacocoTestReport
 
       - name: Upload coverage to Codecov
-        working-directory: ./splearn
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
