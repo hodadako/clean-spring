@@ -23,18 +23,20 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            splearn/.gradle/caches
-            splearn/.gradle/wrapper
+            .gradle/caches
+            .gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
 
       - name: Build and Test
-        run: ./splearn/gradlew clean build jacocoTestReport
+        working-directory: ./splearn
+        run: ./gradlew clean build jacocoTestReport
 
       - name: Upload coverage to Codecov
+        working-directory: ./splearn
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: splearn/build/reports/jacoco/test/jacocoTestReport.xml
+          files: build/reports/jacoco/test/jacocoTestReport.xml
           fail_ci_if_error: true
