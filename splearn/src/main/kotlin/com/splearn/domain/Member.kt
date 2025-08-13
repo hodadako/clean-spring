@@ -1,13 +1,19 @@
 package com.splearn.domain
 
+import jakarta.persistence.Entity
+import jakarta.persistence.Id
+
+@Entity
 class Member private constructor(
+    @Id
+    var id: Long = 0L,
     var email: Email,
     var nickname: String,
     var passwordHash: String,
     var status: MemberStatus = MemberStatus.PENDING
 ) {
     companion object {
-        fun refactor(memberCreateRequest: MemberCreateRequest, passwordEncoder: PasswordEncoder): Member {
+        fun register(memberCreateRequest: MemberCreateRequest, passwordEncoder: PasswordEncoder): Member {
             return Member(
                 email = Email(memberCreateRequest.email),
                 nickname = memberCreateRequest.nickname,
