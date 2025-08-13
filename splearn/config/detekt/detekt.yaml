@@ -1,6 +1,16 @@
 build:
   maxIssues: 0
 
+performance:
+  SpreadOperator:
+    active: false
+
+comments:
+  EmptyFunctionBlock:
+    active: true
+    exclude:
+      - 'src/test/kotlin/com/splearn/SplearnApplicationTests.kt'
+
 config:
   validation: true
   warningsAsErrors: true
