@@ -56,11 +56,11 @@ kotlin {
 }
 
 allOpen {
-    annotation("javax.persistence.Entity")
+    annotation("jakarta.persistence.Entity")
 }
 
 noArg {
-    annotation("javax.persistence.Entity")
+    annotation("jakarta.persistence.Entity")
 }
 
 tasks.withType<Test> {
