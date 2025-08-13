@@ -3,12 +3,15 @@ package com.splearn.domain
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 
 @Entity
 class Member private constructor(
     @Id
-    var id: Long = 0L,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = 0,
     var email: Email,
     var nickname: String,
     var passwordHash: String,
@@ -23,6 +26,10 @@ class Member private constructor(
                 passwordHash = passwordEncoder.encode(memberRegisterRequest.password)
             )
         }
+    }
+
+    override fun toString(): String {
+        return "Member(id=$id, email=$email, nickname=$nickname, status=$status)"
     }
 
     fun activate() {
