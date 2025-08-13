@@ -5,11 +5,14 @@ performance:
   SpreadOperator:
     active: false
 
-comments:
+empty-blocks:
+  active: true
+  EmptyClassBlock:
+    active: false
   EmptyFunctionBlock:
-    active: true
-    exclude:
-      - 'src/test/kotlin/com/splearn/SplearnApplicationTests.kt'
+    active: false
+  EmptyKtFile:
+    active: false
 
 config:
   validation: true
