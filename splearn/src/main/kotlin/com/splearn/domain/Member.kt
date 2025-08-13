@@ -1,6 +1,8 @@
 package com.splearn.domain
 
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.Id
 
 @Entity
@@ -10,6 +12,7 @@ class Member private constructor(
     var email: Email,
     var nickname: String,
     var passwordHash: String,
+    @Enumerated(EnumType.STRING)
     var status: MemberStatus = MemberStatus.PENDING
 ) {
     companion object {
