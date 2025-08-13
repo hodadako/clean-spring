@@ -8,7 +8,6 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
     id("io.gitlab.arturbosch.detekt") version "1.23.4"
     id("io.spring.dependency-management") version "1.1.7"
-    id("com.github.spotbugs") version "6.1.11"
 }
 
 group = "com"
@@ -77,8 +76,4 @@ tasks.jacocoTestReport {
             html.required.set(true)
         }
     }
-}
-
-spotbugs {
-    excludeFilter.set(file("$projectDir/spotbugs-exclude-filter.xml"))
 }
