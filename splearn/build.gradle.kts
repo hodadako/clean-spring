@@ -49,12 +49,6 @@ detekt {
     config.setFrom(files("$projectDir/config/detekt/detekt.yaml"))
 }
 
-kotlin {
-    compilerOptions {
-        freeCompilerArgs.addAll("-Xjsr305=strict")
-    }
-}
-
 allOpen {
     annotation("jakarta.persistence.Entity")
 }
