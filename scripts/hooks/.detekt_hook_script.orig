@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+cd splearn
 echo "Running detekt check..."
 OUTPUT="/tmp/detekt-$(date +%s)"
 ./splearn/gradlew detekt > $OUTPUT
