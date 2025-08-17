@@ -1,8 +1,8 @@
-`#!/usr/bin/env` bash
+#!/usr/bin/env bash
 
 LINTER_CURRENT_DIR=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
-GRADLEW_SCRIPT_PATH="$LINTER_CURRENT_DIR/../gradlew"
-GIT_HOOK_DIR="$LINTER_CURRENT_DIR/../.git/hooks"
+GRADLEW_SCRIPT_PATH="$LINTER_CURRENT_DIR/../../splearn/gradlew"
+GIT_HOOK_DIR="$LINTER_CURRENT_DIR/../../.git/hooks"
 DETEKT_TARGET_FILE="$GIT_HOOK_DIR/pre-push"
 DETEKT_HOOK_SCRIPT="$LINTER_CURRENT_DIR/.detekt_hook_script.orig"
 
