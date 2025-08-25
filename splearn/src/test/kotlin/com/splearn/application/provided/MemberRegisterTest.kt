@@ -29,7 +29,7 @@ data class MemberRegisterTest(
 
     @Test
     fun duplicateEmailFail() {
-        val member = memberRegister.register(MemberFixture.createMemberRegisterRequest("hodako2401@splearn.app"))
+        memberRegister.register(MemberFixture.createMemberRegisterRequest("hodako2401@splearn.app"))
 
         assertThatThrownBy { memberRegister.register(MemberFixture.createMemberRegisterRequest()) }
             .isInstanceOf(
