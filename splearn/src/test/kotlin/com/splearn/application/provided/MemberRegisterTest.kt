@@ -8,6 +8,8 @@ import com.splearn.domain.Member
 import com.splearn.domain.MemberFixture.createMemberRegisterRequest
 import com.splearn.domain.MemberFixture.createPasswordEncoder
 import com.splearn.domain.MemberStatus
+import io.mockk.mockk
+import io.mockk.verify
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Test
@@ -28,7 +30,8 @@ class MemberRegisterTest {
 
     @Test
     fun registerTestMock() {
-        val emailSenderMock = EmailSenderMock()
+        val emailSenderMock = mockk<EmailSender>(relaxed = true)
+
         val register = MemberService(MemberRepositoryStub(), emailSenderMock, createPasswordEncoder())
 
         val member = register.register(createMemberRegisterRequest())
@@ -36,8 +39,7 @@ class MemberRegisterTest {
         assertAll(
             { assertThat(member.id).isNotNull() },
             { assertThat(member.status).isEqualTo(MemberStatus.PENDING) },
-            { assertThat(emailSenderMock.toSend).hasSize(1) },
-            { assertThat(emailSenderMock.toSend.get(0)).isEqualTo(member.email) }
+            { verify(exactly = 1) { emailSenderMock.send(member.email, any(), any()) } }
         )
     }
 
@@ -50,14 +52,6 @@ class MemberRegisterTest {
 
     class EmailSenderStub : EmailSender {
         override fun send(email: Email, body: String, subject: String) {
-        }
-    }
-
-    class EmailSenderMock : EmailSender {
-        val toSend = mutableListOf<Email>()
-
-        override fun send(email: Email, body: String, subject: String) {
-            toSend.add(email)
         }
     }
 }
