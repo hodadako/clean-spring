@@ -48,6 +48,10 @@ class MemberRegisterManualTest {
             ReflectionTestUtils.setField(member, "id", 1L)
             return member
         }
+
+        override fun findByEmail(email: String): Member? {
+            return null
+        }
     }
 
     class EmailSenderStub : EmailSender {

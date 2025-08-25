@@ -1,5 +1,6 @@
 package com.splearn.application
 
+import com.splearn.application.provided.DuplicateEmailException
 import com.splearn.application.provided.MemberRegister
 import com.splearn.application.required.EmailSender
 import com.splearn.application.required.MemberRepository
@@ -15,14 +16,24 @@ class MemberService(
     private val passwordEncoder: PasswordEncoder
 ) : MemberRegister {
     override fun register(registerRequest: MemberRegisterRequest): Member {
-        // check
+        checkDuplicateEmail(registerRequest)
 
         val member = Member.register(registerRequest, passwordEncoder)
 
         memberRepository.save(member)
 
-        emailSender.send(member.email, "등록을 완료해주세요.", "아래 링크를 클릭해서 등록을 완료해주세요.")
+        sendWelcomeEmail(member)
 
         return member
+    }
+
+    private fun sendWelcomeEmail(member: Member) {
+        emailSender.send(member.email, "등록을 완료해주세요.", "아래 링크를 클릭해서 등록을 완료해주세요.")
+    }
+
+    private fun checkDuplicateEmail(registerRequest: MemberRegisterRequest) {
+        memberRepository.findByEmail(registerRequest.email)?.let {
+            throw DuplicateEmailException("이미 존재하는 이메일입니다.")
+        }
     }
 }
