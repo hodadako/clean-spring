@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.context.annotation.Bean
 
 @TestConfiguration
-class ApplicationTestSupport {
+class SplearnTestConfiguration {
     @Bean
     fun emailSender(): EmailSender {
         return object : EmailSender {

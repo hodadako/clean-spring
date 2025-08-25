@@ -1,6 +1,6 @@
 package com.splearn.application.provided
 
-import com.splearn.ApplicationTestSupport
+import com.splearn.SplearnTestConfiguration
 import com.splearn.domain.MemberFixture
 import com.splearn.domain.MemberStatus
 import org.assertj.core.api.Assertions.assertThat
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
 
 @SpringBootTest
-@Import(ApplicationTestSupport::class)
+@Import(SplearnTestConfiguration::class)
 class MemberRegisterTest {
     @Autowired
     private lateinit var memberRegister: MemberRegister
