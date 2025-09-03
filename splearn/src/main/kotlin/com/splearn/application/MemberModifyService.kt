@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 
 @Service
 @Transactional
-class MemberService(
+class MemberModifyService(
     private val memberRepository: MemberRepository,
     private val emailSender: EmailSender,
     private val passwordEncoder: PasswordEncoder
