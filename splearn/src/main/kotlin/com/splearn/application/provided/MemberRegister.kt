@@ -8,4 +8,6 @@ import com.splearn.domain.MemberRegisterRequest
  */
 interface MemberRegister {
     fun register(registerRequest: MemberRegisterRequest): Member
+
+    fun activate(memberId: Long): Member
 }

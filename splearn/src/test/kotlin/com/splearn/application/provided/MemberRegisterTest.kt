@@ -15,10 +15,12 @@ import org.junit.jupiter.params.provider.MethodSource
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
 import org.springframework.test.context.TestConstructor
+import org.springframework.transaction.annotation.Transactional
 import java.util.stream.Stream
 
 @SpringBootTest
 @Import(SplearnTestConfiguration::class)
+@Transactional
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 data class MemberRegisterTest(
     val memberRegister: MemberRegister
@@ -37,10 +39,19 @@ data class MemberRegisterTest(
     fun duplicateEmailFail() {
         memberRegister.register(MemberFixture.createMemberRegisterRequest("hodako2401@splearn.app"))
 
-        assertThatThrownBy { memberRegister.register(MemberFixture.createMemberRegisterRequest()) }
+        assertThatThrownBy { memberRegister.register(MemberFixture.createMemberRegisterRequest("hodako2401@splearn.app")) }
             .isInstanceOf(
                 DuplicateEmailException::class.java
             )
+    }
+
+    @Test
+    fun activate() {
+        val member = memberRegister.register(MemberFixture.createMemberRegisterRequest())
+
+        memberRegister.activate(member.id)
+
+        assertThat(member.status).isEqualTo(MemberStatus.ACTIVE)
     }
 
     @ParameterizedTest(name = "{0}")

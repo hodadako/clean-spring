@@ -29,6 +29,15 @@ class MemberService(
         return member
     }
 
+    override fun activate(memberId: Long): Member {
+        val member =
+            memberRepository.findById(memberId) ?: throw IllegalArgumentException("회원을 찾을 수 없습니다. id: $memberId")
+
+        member.activate()
+
+        return member
+    }
+
     private fun sendWelcomeEmail(member: Member) {
         emailSender.send(member.email, "등록을 완료해주세요.", "아래 링크를 클릭해서 등록을 완료해주세요.")
     }
