@@ -5,7 +5,7 @@ object MemberFixture {
         return MemberRegisterRequest(
             email = email,
             nickname = "hodako",
-            password = "secret"
+            password = "secret_too_legit"
         )
     }
 
