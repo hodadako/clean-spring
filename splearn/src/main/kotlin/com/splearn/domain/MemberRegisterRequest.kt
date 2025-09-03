@@ -7,7 +7,7 @@ data class MemberRegisterRequest(
 ) {
     init {
         FieldValidationUtils.email(email)
-        FieldValidationUtils.size(nickname, "닉네임 길이가 올바르지 않습니다.", 5, 20)
-        FieldValidationUtils.size(password, "비밀번호 길이가 올바르지 않습니다.", 8, 100)
+        FieldValidationUtils.size(nickname, "닉네임 길이가 올바르지 않습니다.", min = 5, max = 20)
+        FieldValidationUtils.size(password, "비밀번호 길이가 올바르지 않습니다.", min = 8, max = 100)
     }
 }
