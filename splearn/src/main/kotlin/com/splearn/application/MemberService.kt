@@ -7,9 +7,11 @@ import com.splearn.application.required.MemberRepository
 import com.splearn.domain.Member
 import com.splearn.domain.MemberRegisterRequest
 import com.splearn.domain.PasswordEncoder
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 
 @Service
+@Transactional
 class MemberService(
     private val memberRepository: MemberRepository,
     private val emailSender: EmailSender,
