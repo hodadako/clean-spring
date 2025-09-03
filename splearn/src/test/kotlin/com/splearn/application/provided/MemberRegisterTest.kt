@@ -53,10 +53,8 @@ data class MemberRegisterTest(
     fun activate() {
         val member = memberRegister.register(MemberFixture.createMemberRegisterRequest())
 
-        entityManager.flush()
-        entityManager.clear()
-
         memberRegister.activate(member.id)
+        entityManager.flush()
 
         assertThat(member.status).isEqualTo(MemberStatus.ACTIVE)
     }
