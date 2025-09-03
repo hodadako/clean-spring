@@ -4,6 +4,7 @@ import com.splearn.SplearnTestConfiguration
 import com.splearn.domain.MemberFixture
 import com.splearn.domain.MemberRegisterRequest
 import com.splearn.domain.MemberStatus
+import jakarta.persistence.EntityManager
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions.assertAll
@@ -23,7 +24,8 @@ import java.util.stream.Stream
 @Transactional
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 data class MemberRegisterTest(
-    val memberRegister: MemberRegister
+    val memberRegister: MemberRegister,
+    val entityManager: EntityManager
 ) {
     @Test
     fun register() {
@@ -48,6 +50,9 @@ data class MemberRegisterTest(
     @Test
     fun activate() {
         val member = memberRegister.register(MemberFixture.createMemberRegisterRequest())
+
+        entityManager.flush()
+        entityManager.clear()
 
         memberRegister.activate(member.id)
 
