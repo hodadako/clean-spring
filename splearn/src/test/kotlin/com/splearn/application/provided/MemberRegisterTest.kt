@@ -41,7 +41,9 @@ data class MemberRegisterTest(
     fun duplicateEmailFail() {
         memberRegister.register(MemberFixture.createMemberRegisterRequest("hodako2401@splearn.app"))
 
-        assertThatThrownBy { memberRegister.register(MemberFixture.createMemberRegisterRequest("hodako2401@splearn.app")) }
+        assertThatThrownBy {
+            memberRegister.register(MemberFixture.createMemberRegisterRequest("hodako2401@splearn.app"))
+        }
             .isInstanceOf(
                 DuplicateEmailException::class.java
             )
