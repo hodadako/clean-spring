@@ -13,7 +13,9 @@ class SplearnApplicationTest {
     fun `main should call SpringApplication run`() {
         mockkStatic(SpringApplication::class)
         val args = arrayOf<String>()
-        every { SpringApplication.run(SplearnApplication::class.java, *args) } returns mockk<ConfigurableApplicationContext>()
+        every {
+            SpringApplication.run(SplearnApplication::class.java, *args)
+        } returns mockk<ConfigurableApplicationContext>()
 
         main(args)
 
