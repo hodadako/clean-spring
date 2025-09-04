@@ -13,6 +13,7 @@ class DummyEmailSenderTest {
         val dummyEmailSender = DummyEmailSender()
 
         dummyEmailSender.send(Email("hodako@splearn.app"), "yeah!!!", "important: dummy")
-        assertThat(out.capturedLines()[0]).isEqualTo("DummyEmailSender sending email " + Email("hodako@splearn.app").toString())
+        val expected = "DummyEmailSender sending email " + Email("hodako@splearn.app").toString()
+        assertThat(out.capturedLines()[0]).isEqualTo(expected)
     }
 }
