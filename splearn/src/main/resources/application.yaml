@@ -1,6 +1,10 @@
 spring:
   application:
     name: splearn
+  jpa:
+    hibernate:
+        ddl-auto: update
+    show-sql: true
   docker:
     compose:
       file:
