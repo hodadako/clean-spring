@@ -8,3 +8,6 @@
 - `ktlint`를 `pre-commit`으로 `detekt`를 `pre-push`로 적용해요. 강의에서 사용하는 `spotbugs`를 사용하지 않아요.
 - `mockito-core` 대신 `mockk`를 사용해요.
 - `codecov` 연동을 테스트해요.
+
+## 새로 배운 점
+- [Kotlin Modifiers Order](https://kotlinlang.org/docs/coding-conventions.html#modifiers-order)
